@@ -27,7 +27,7 @@ COPY . .
 RUN ls -la
 
 # Attempt to run your "makeJS" script to compile TypeScript to JavaScript
-RUN npm run makeJS
+RUN tsc
 
 # Make port 80 available to the world outside this container
 EXPOSE 80
