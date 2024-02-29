@@ -1,10 +1,16 @@
 # BacktestJS
 ![GitHub](https://img.shields.io/github/license/andrewbaronick/BacktestJS) 
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/andrewbaronick/BacktestJS) 
+
+
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/andrewbaronick/BacktestJS) 
 ![GitHub contributors](https://img.shields.io/github/contributors/andrewbaronick/BacktestJS) 
 ![GitHub last commit](https://img.shields.io/github/last-commit/andrewbaronick/BacktestJS) 
-![GitHub package.json dynamic](https://img.shields.io/github/package-json/keywords/bandrewbaronick/BacktestJS) 
+
+
+![GitHub package.json dynamic](https://img.shields.io/github/package-json/keywords/andrewbaronick/BacktestJS) 
+
+
 ![GitHub package.json dynamic](https://img.shields.io/github/package-json/author/andrewbaronick/BacktestJS)
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fandrewbaronick%2FBacktestJS%2Fhit-counter&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Views&edge_flat=false)](https://hits.seeyoufarm.com)
 
