@@ -23,11 +23,8 @@ RUN npm install --build-from-source
 # Copy the rest of your application's source code from your host to your image filesystem.
 COPY . .
 
-# Debug: List files in the working directory
-RUN ls -la
-
-# Attempt to run your "makeJS" script to compile TypeScript to JavaScript
-RUN tsc
+# Use npx to run the TypeScript compiler
+RUN npx tsc
 
 # Make port 80 available to the world outside this container
 EXPOSE 80
