@@ -17,21 +17,30 @@ jobs:
         node-version: [21.x]
     steps:
       - uses: actions/checkout@v2
+      
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+          
       - name: Install dependencies
         run: npm install
+        
+      - name: Compile TypeScript
+        run: npm run makeJS
+        
       - name: Install pkg globally
         run: npm install -g pkg
+        
       - name: Set PKG_TARGET environment variable
         run: |
           echo "PKG_TARGET=node21-$(echo ${{ matrix.os }} | sed -e 's/ubuntu-latest/linux/' -e 's/windows-latest/win/' -e 's/macos-latest/macos/')" >> $GITHUB_ENV
+          
       - name: Build executable
-        run: pkg -t ${{ env.PKG_TARGET }} . 
+        run: pkg -t ${{ env.PKG_TARGET }} dist/main.js
         env:
           PKG_CACHE_PATH: './.pkg-cache'
+          
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
