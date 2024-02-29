@@ -25,11 +25,9 @@ jobs:
           mkdir -p ./dist
           docker cp app_build:/usr/src/app/dist/. ./dist/
           ls -la ./dist/
-          docker ls app_build:/usr/src/app/dist/
 
       - name: Debugging - List container details
         run: docker ps -a
-
         
   package:
     needs: build
