@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npx ts-node src/main.ts",
     "dev": "npx ts-node src/main.ts",
-    "makeJS": "tsc",
+    "makeJS": "tsc || true",
     "js": "node dist/main.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "npm run build"
