@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest # Docker build will run on Ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       
@@ -20,7 +20,6 @@ jobs:
       - name: Run Docker container to build project
         run: docker run --name app_build my-application
 
-      # After building with Docker, you can copy out any artifacts you need to use in subsequent steps
       - name: Copy build artifacts from Docker container
         run: docker cp app_build:/usr/src/app/dist ./
         
@@ -37,6 +36,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.17.0
+          cache: 'npm'
 
       - name: Install pkg globally
         run: npm install -g pkg
