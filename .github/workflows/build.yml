@@ -1,3 +1,13 @@
+name: Build and Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version'
+        required: true
+        default: '1.0.0'
+
 jobs:
   build:
     runs-on: ${{ matrix.os }}
