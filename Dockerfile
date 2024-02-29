@@ -1,5 +1,5 @@
 # Use the official Node.js 18 image as a parent image
-FROM node:18.17.0
+FROM node:18.19.1
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
@@ -31,6 +31,11 @@ RUN npx prisma generate
 
 # Make port 80 available to the world outside this container
 EXPOSE 80
+
+RUN ls /usr/
+RUN ls /usr/src/
+RUN ls /usr/src/app/
+RUN ls /usr/src/app/dist
 
 # Command to run your application
 CMD [ "node", "dist/main.js" ]
