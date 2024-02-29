@@ -14,8 +14,8 @@ RUN apt-get update && apt-get install -y \
 # Create a symlink for python if necessary
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
-# Copy package.json and package-lock.json (if available) to the work directory
-COPY package*.json ./
+# Copy package.json, package-lock.json (if available), and tsconfig.json to the work directory
+COPY package*.json tsconfig.json ./
 
 # Install Node.js dependencies defined in package.json
 RUN npm install --build-from-source
@@ -24,7 +24,10 @@ RUN npm install --build-from-source
 COPY . .
 
 # Use npx to run the TypeScript compiler
-RUN npx tsc || true
+RUN npx tsc
+
+# Generate Prisma client
+RUN npx prisma generate
 
 # Make port 80 available to the world outside this container
 EXPOSE 80
