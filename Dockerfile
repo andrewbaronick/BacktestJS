@@ -4,12 +4,16 @@ FROM node:18.17.0
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
-# Install any system dependencies required by your node modules
-# For Debian/Ubuntu-based images
+# Install system dependencies required for your node modules
 RUN apt-get update && apt-get install -y \
     build-essential \
-    python2 \
-    && rm -rf /var/lib/apt/lists/*
+    python3 \
+    --no-install-recommends \
+ && rm -rf /var/lib/apt/lists/*
+
+# If you need to ensure python3 is used as `python`, you can create a symlink
+# This is sometimes needed for scripts expecting `python` to be available
+RUN ln -s /usr/bin/python3 /usr/bin/python
 
 # Copy package.json and package-lock.json to work directory
 COPY package*.json ./
