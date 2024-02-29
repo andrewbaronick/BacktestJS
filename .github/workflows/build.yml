@@ -1,0 +1,39 @@
+name: Build and Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version'
+        required: true
+        default: '1.0.0'
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node-version: [14.x]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: npm install
+      - name: Install pkg globally
+        run: npm install -g pkg
+      - name: Build executable
+        run: pkg -t node14-${{ matrix.platform }} . 
+        env:
+          PKG_CACHE_PATH: './.pkg-cache'
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ runner.os }}-exe
+          path: |
+            ./*.exe
+            ./*-linux
+            ./*-macos
