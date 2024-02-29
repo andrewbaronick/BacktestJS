@@ -58,9 +58,9 @@ export async function sma(bth: BTH) {
     const lowSMACandles = await bth.getCandles('close', 0, 3)
     const highSMACandles = await bth.getCandles('close', 0, 45)
 
-    // Get SMA's
-    const lowSMA = await indicatorSMA(lowSMACandles, 3, 1)
-    const highSMA = await indicatorSMA(highSMACandles, 45, 1)
+    // Get SMA
+    const lowSMA = await indicatorSMA(lowSMACandles, 3)
+    const highSMA = await indicatorSMA(highSMACandles, 45)
 
     // Perform Buy / Sell when low crosses high
     if (lowSMA > highSMA) {
@@ -87,9 +87,9 @@ export async function sma(bth: BTH) {
     const lowSMACandles = await bth.getCandles('close', 0, lowSMAInput)
     const highSMACandles = await bth.getCandles('close', 0, highSMAInput)
 
-    // Get SMA's
-    const lowSMA = await indicatorSMA(lowSMACandles, lowSMAInput, 1)
-    const highSMA = await indicatorSMA(highSMACandles, highSMAInput, 1)
+    // Get SMA
+    const lowSMA = await indicatorSMA(lowSMACandles, lowSMAInput)
+    const highSMA = await indicatorSMA(highSMACandles, highSMAInput)
 
     // Perform Buy / Sell when low crosses high
     if (lowSMA > highSMA) {
