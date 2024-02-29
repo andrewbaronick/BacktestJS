@@ -23,6 +23,7 @@ jobs:
       - name: Copy build artifacts from Docker container (Debugging)
         run: |
           mkdir -p ./dist
+          ls -la ./dist/
           docker cp app_build:/usr/src/app/dist/. ./dist/
           ls -la ./dist/
 
