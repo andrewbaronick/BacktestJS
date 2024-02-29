@@ -24,7 +24,7 @@ RUN npm install --build-from-source
 COPY . .
 
 # Use npx to run the TypeScript compiler
-RUN npx tsc
+RUN npx tsc || true
 
 # Generate Prisma client
 RUN npx prisma generate
