@@ -13,19 +13,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: Build Docker image
         run: docker build . -t my-application
-        
+
       - name: Create Docker container without running it
         run: docker create --name app_build my-application
-        
-      - name: Copy build artifacts from Docker container
+
+      - name: Copy build artifacts from Docker container (Debugging)
         run: |
-          docker cp app_build:/usr/src/app/dist ./dist
-          
-      - name: List build artifacts in GitHub Actions environment (Debugging)
-        run: ls -la ./dist
+          mkdir -p ./dist
+          docker cp app_build:/usr/src/app/dist/. ./dist/
+          ls -la ./dist/
+          docker ls app_build:/usr/src/app/dist/
+
+      - name: Debugging - List container details
+        run: docker ps -a
+
         
   package:
     needs: build
