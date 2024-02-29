@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="charts.css">
+  <title>Results Statistics and Charts</title>
+  <script type="text/javascript"
+    src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+  <h2>General Info</h2>
+  <table class="custom-table" id="general-table">
+    <thead></thead>
+    <tbody></tbody>
+  </table>
+
+  <h2>Total Stats</h2>
+  <table class="custom-table" id="total-amounts-table">
+    <thead></thead>
+    <tbody></tbody>
+  </table>
+
+  <h2 id="asset-stats-title">Asset Stats</h2>
+  <table class="custom-table" id="asset-amount-percentages-table">
+    <thead></thead>
+    <tbody></tbody>
+  </table>
+
+  <h2>Permutation Results</h2>
+  <div class="sort-buttons">
+    <button class="sort-button" id="sortEndAmount">Sort by End Amount</button>
+    <button class="sort-button" id="sortSharpeRatio">Sort by Sharpe Ratio</button>
+    <button class="sort-button" id="sortMaxDrawdown">Sort by Max Drawdown</button>
+  </div>
+  <table class="custom-table" id="permutation-table">
+    <thead></thead>
+    <tbody></tbody>
+  </table>
+
+  <h2 id="heatmap-title">Heatmap</h2>
+  <div id="heatmap"></div>
+
+  <script type="module">
+    import { populateTable, sortTable, populateHeatmap, createHeatmapSortButtons, fetchJSON } from './helpers.js';
+
+    async function setup() {
+      // Find if Multi Symbol
+      const multiData = await fetchJSON('http://localhost:8000/results-stats-multi.json')
+      const multiSymbol = multiData.generalData[4].value.length !== 1
+      const permutationCount = multiData.generalData[3].value
+
+      let shouldShow = true
+      if (multiSymbol && permutationCount === multiData.generalData[4].value.length) shouldShow = false
+
+      // Initial population of tables and heatmap
+      await populateTable('http://localhost:8000/results-stats-multi.json', 'general-table', 'generalData');
+      await populateTable('http://localhost:8000/results-stats-multi.json', 'total-amounts-table', 'totals');
+      if (shouldShow) await populateTable('http://localhost:8000/results-stats-multi.json', 'asset-amount-percentages-table', 'assetAmountsPercentages');
+      await populateTable('http://localhost:8000/results-multi.json', 'permutation-table', 'multiResults');
+      if (shouldShow) await populateHeatmap();
+      if (shouldShow) await createHeatmapSortButtons()
+
+      if (!shouldShow) {
+        document.getElementById('asset-stats-title').style.display = "none"
+        document.getElementById('asset-amount-percentages-table').style.display = "none"
+        document.getElementById('heatmap-title').style.display = "none"
+      }
+
+      document.getElementById('sortEndAmount').addEventListener('click', () => sortTable('endAmountUpdated'));
+      document.getElementById('sortSharpeRatio').addEventListener('click', () => sortTable('sharpeRatioUpdated'));
+      document.getElementById('sortMaxDrawdown').addEventListener('click', () => sortTable('maxDrawdown'));
+    }
+
+    setup();
+  </script>
+</body>
+
+</html>

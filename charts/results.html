@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="charts.css">
+  <title>Results Statistics and Charts</title>
+  <script type="text/javascript"
+    src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+</head>
+
+<body>
+  <h2>General Info</h2>
+  <table class="custom-table" id="general-table">
+    <thead></thead>
+    <tbody></tbody>
+  </table>
+
+  <h2>Total Stats</h2>
+  <table class="custom-table" id="total-amounts-table">
+    <thead></thead>
+    <tbody></tbody>
+  </table>
+
+  <h2>Trade Stats</h2>
+  <table class="custom-table" id="trade-percentages-table">
+    <thead></thead>
+    <tbody></tbody>
+  </table>
+
+  <h2>Trade Buy / Sell Stats</h2>
+  <table class="custom-table" id="trade-buy-sell-amounts-table">
+    <thead></thead>
+    <tbody></tbody>
+  </table>
+
+  <h2>Asset Stats</h2>
+  <table class="custom-table" id="asset-amount-percentages-table">
+    <thead></thead>
+    <tbody></tbody>
+  </table>
+
+  <h2>Income Results</h2>
+  <div id="legend1"></div>
+  <div class="chart-container">
+    <div id="container1" style="width: 100%; height: 45vh;"></div>
+  </div>
+
+  <h2>Buy / Sell Locations</h2>
+  <div id="legend2"></div>
+  <div class="chart-container">
+    <div id="container2" style="width: 100%; height: 45vh;"></div>
+  </div>
+
+  <h2>All Orders</h2>
+  <div class="table-wrapper">
+    <table class="custom-table" id="orders-table">
+      <thead></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script type="module">
+    import { initializeChart, populateTable } from './helpers.js';
+
+    async function initChartsAndTables() {
+      // Initialize charts
+      await initializeChart('http://localhost:8000/results-worths.json', 'container1', 'legend1', false);
+      await initializeChart('http://localhost:8000/results-candles.json', 'container2', 'legend2', false, 'http://localhost:8000/results-orders.json');
+
+      // Populate tables
+      await populateTable('http://localhost:8000/results-orders.json', 'orders-table');
+      await populateTable('http://localhost:8000/results-stats.json', 'general-table', 'generalData');
+      await populateTable('http://localhost:8000/results-stats.json', 'total-amounts-table', 'totals');
+      await populateTable('http://localhost:8000/results-stats.json', 'trade-percentages-table', 'trades');
+      await populateTable('http://localhost:8000/results-stats.json', 'trade-buy-sell-amounts-table', 'tradeBuySellAmounts');
+      await populateTable('http://localhost:8000/results-stats.json', 'asset-amount-percentages-table', 'assetAmountsPercentages');
+    }
+
+    // Ensure this runs after DOM content is fully loaded
+    document.addEventListener('DOMContentLoaded', initChartsAndTables);
+  </script>
+</body>
+
+</html>
