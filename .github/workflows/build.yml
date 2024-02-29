@@ -23,8 +23,10 @@ jobs:
       - name: Copy build artifacts from Docker container
         run: |
           docker cp app_build:/usr/src/app/dist ./dist
-          ls -la ./dist
-
+          
+      - name: List build artifacts in GitHub Actions environment (Debugging)
+        run: ls -la ./dist
+        
   package:
     needs: build
     runs-on: ${{ matrix.os }}
@@ -47,8 +49,10 @@ jobs:
         run: |
           echo "PKG_TARGET=node18-$(echo ${{ matrix.os }} | sed -e 's/ubuntu-latest/linux/' -e 's/windows-latest/win/' -e 's/macos-latest/macos/')" >> $GITHUB_ENV
 
-      - name: Build executable using pkg
-        run: pkg -t ${{ env.PKG_TARGET }} ./dist/main.js
+      - name: Build executable using pkg (Debugging)
+        run: |
+          ls -la ./dist
+          pkg -t ${{ env.PKG_TARGET }} ./dist/main.js
         env:
           PKG_CACHE_PATH: './.pkg-cache'
 
