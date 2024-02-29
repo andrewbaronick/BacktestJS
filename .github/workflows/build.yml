@@ -10,37 +10,46 @@ on:
 
 jobs:
   build:
+    runs-on: ubuntu-latest # Docker build will run on Ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Build Docker image
+        run: docker build . -t my-application
+
+      - name: Run Docker container to build project
+        run: docker run --name app_build my-application
+
+      # After building with Docker, you can copy out any artifacts you need to use in subsequent steps
+      - name: Copy build artifacts from Docker container
+        run: docker cp app_build:/usr/src/app/dist ./
+        
+  package:
+    needs: build
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        node-version: [18.17.0]
     steps:
       - uses: actions/checkout@v2
       
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
-          
-      - name: Install dependencies
-        run: npm install
-        
-      - name: Compile TypeScript
-        run: npm run makeJS
-        
+          node-version: 18.17.0
+
       - name: Install pkg globally
         run: npm install -g pkg
-        
+
       - name: Set PKG_TARGET environment variable
         run: |
           echo "PKG_TARGET=node18-$(echo ${{ matrix.os }} | sed -e 's/ubuntu-latest/linux/' -e 's/windows-latest/win/' -e 's/macos-latest/macos/')" >> $GITHUB_ENV
-          
-      - name: Build executable
-        run: pkg -t ${{ env.PKG_TARGET }} dist/main.js
+
+      - name: Build executable using pkg
+        run: pkg -t ${{ env.PKG_TARGET }} ./dist/main.js
         env:
           PKG_CACHE_PATH: './.pkg-cache'
-          
+
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
