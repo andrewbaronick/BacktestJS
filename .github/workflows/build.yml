@@ -16,15 +16,14 @@ jobs:
       
       - name: Build Docker image
         run: docker build . -t my-application
-
-      - name: Run Docker container to build project
-        run: docker run --name app_build my-application
-
-      - name: List contents in the container (Debugging)
-        run: docker exec app_build ls -la /usr/src/app/dist
-
+        
+      - name: Create Docker container without running it
+        run: docker create --name app_build my-application
+        
       - name: Copy build artifacts from Docker container
-        run: docker cp app_build:/usr/src/app/dist ./
+        run: |
+          docker cp app_build:/usr/src/app/dist ./dist
+          ls -la ./dist
 
   package:
     needs: build
