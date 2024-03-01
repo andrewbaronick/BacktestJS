@@ -14,5 +14,6 @@ results-worths.json
 results-multi.json
 results-stats.json
 candleName.json
+backtestJS.db
 candles.json
 .DS_Store
