@@ -93,8 +93,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.YOUR_PERSONAL_ACCESS_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dist/my-application-${{ runner.os }}-${{ github.event.inputs.version }}.exe
-          asset_name: my-application-${{ runner.os }}-${{ github.event.inputs.version }}.exe
+          asset_path: ${{ github.workspace }}/dist/my-application-${{ matrix.os }}-${{ github.event.inputs.version }}${{ runner.os == 'Windows' && '.exe' || '' }}
+          asset_name: my-application-${{ matrix.os }}-${{ github.event.inputs.version }}${{ runner.os == 'Windows' && '.exe' || '' }}
           asset_content_type: application/octet-stream
+  
   
   
