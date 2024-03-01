@@ -54,16 +54,21 @@ jobs:
       - name: Install pkg globally
         run: npm install -g pkg
 
-      - name: Set PKG_TARGET environment variable
+      - name: Set PKG_TARGET environment variable and build executable
         run: |
-          echo "PKG_TARGET=$(if [ ${{ runner.os }} = 'Windows' ]; then echo 'node18-win-x64'; elif [ ${{ runner.os }} = 'macOS' ]; then echo 'node18-macos-x64'; else echo 'node18-linux-x64'; fi)" >> $GITHUB_ENV
+          PKG_TARGET=""
+          FILE_NAME="my-application-${{ matrix.os }}-${{ github.event.inputs.version }}"
+          if [ "${{ runner.os }}" == "Windows" ]; then
+            PKG_TARGET="node18-win-x64"
+            FILE_NAME+=".exe"
+          elif [ "${{ runner.os }}" == "macOS" ]; then
+            PKG_TARGET="node18-macos-x64"
+          else
+            PKG_TARGET="node18-linux-x64"
+          fi
+          pkg -t $PKG_TARGET ./dist/main.js --output ./dist/$FILE_NAME
+          echo "FILE_NAME=$FILE_NAME" >> $GITHUB_ENV
         shell: bash
-
-      - name: Build executable using pkg
-        run: |
-          pkg -t ${{ env.PKG_TARGET }} ./dist/main.js
-        env:
-          PKG_CACHE_PATH: './.pkg-cache'
 
       - name: List contents of the dist directory
         run: ls -la ./dist/
@@ -72,10 +77,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ runner.os }}-exe
-          path: |
-            ./*.exe
-            ./*-linux
-            ./*-macos
+          path: ./dist/${{ env.FILE_NAME }}
 
       - name: Create Release
         id: create_release
@@ -88,7 +90,7 @@ jobs:
           release_name: Release ${{ github.event.inputs.version }}
           draft: false
           prerelease: false
-    
+
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
         if: ${{ github.ref == 'refs/heads/main' }} && ${{ matrix.os == 'ubuntu-latest' }}
@@ -96,9 +98,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.YOUR_PERSONAL_ACCESS_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ github.workspace }}/dist/my-application-${{ matrix.os }}-${{ github.event.inputs.version }}${{ runner.os == 'Windows' && '.exe' || '' }}
-          asset_name: my-application-${{ matrix.os }}-${{ github.event.inputs.version }}${{ runner.os == 'Windows' && '.exe' || '' }}
+          asset_path: ./dist/${{ env.FILE_NAME }}
+          asset_name: ${{ env.FILE_NAME }}
           asset_content_type: application/octet-stream
-  
-  
-  
