@@ -38,13 +38,7 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - uses: actions/checkout@v2
-
-      - name: Download dist artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: dist-artifact
-          path: ./dist
-
+      
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -56,17 +50,11 @@ jobs:
 
       - name: Set PKG_TARGET environment variable
         run: |
-          if [[ "${{ runner.os }}" == "Windows" ]]; then
-            echo "PKG_TARGET=node18-win-x64" >> $GITHUB_ENV
-          elif [[ "${{ runner.os }}" == "macOS" ]]; then
-            echo "PKG_TARGET=node18-macos-x64" >> $GITHUB_ENV
-          else
-            echo "PKG_TARGET=node18-linux-x64" >> $GITHUB_ENV
-          fi
+          echo "PKG_TARGET=$(if [ ${{ runner.os }} = 'Windows' ]; then echo 'node18-win-x64'; elif [ ${{ runner.os }} = 'macOS' ]; then echo 'node18-macos-x64'; else echo 'node18-linux-x64'; fi)" >> $GITHUB_ENV
+        shell: bash
 
       - name: Build executable using pkg
-        run: |
-          pkg -t ${{ env.PKG_TARGET }} ./dist/main.js
+        run: pkg -t ${{ env.PKG_TARGET }} ./dist/main.js
         env:
           PKG_CACHE_PATH: './.pkg-cache'
 
