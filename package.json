@@ -15,6 +15,11 @@
   "bin": {
     "backtestjs": "dist/main.js"
   },
+  "pkg": {
+    "assets": [
+      "node_modules/**/*"
+    ]
+  },
   "author": "Andrew Baronick",
   "license": "Apache-2.0",
   "dependencies": {
