@@ -38,7 +38,13 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - uses: actions/checkout@v2
-      
+
+      - name: Download dist artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: dist-artifact
+          path: ./dist
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -54,7 +60,8 @@ jobs:
         shell: bash
 
       - name: Build executable using pkg
-        run: pkg -t ${{ env.PKG_TARGET }} ./dist/main.js
+        run: |
+          pkg -t ${{ env.PKG_TARGET }} ./dist/main.js
         env:
           PKG_CACHE_PATH: './.pkg-cache'
 
