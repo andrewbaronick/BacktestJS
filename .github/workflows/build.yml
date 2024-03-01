@@ -87,7 +87,7 @@ jobs:
         id: create_release_step # Ensure this ID is unique and used here
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BUILD_APP }}
         with:
           tag_name: ${{ github.event.inputs.version }}
           release_name: Release ${{ github.event.inputs.version }}
