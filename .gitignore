@@ -1,5 +1,6 @@
 /prisma/migrations
 /node_modules
+/archived
 /tests
 /dist
 /csv
