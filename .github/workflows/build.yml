@@ -79,18 +79,21 @@ jobs:
   create_release:
     needs: package
     runs-on: ubuntu-latest
+    outputs:
+      upload_url: ${{ steps.create_release_step.outputs.upload_url }} # Define output at the job level
     if: ${{ github.ref == 'refs/heads/main' }}
     steps:
       - name: Create Release
-        id: create_release
+        id: create_release_step # Ensure this ID is unique and used here
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.BUILD_APP }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.event.inputs.version }}
           release_name: Release ${{ github.event.inputs.version }}
           draft: false
           prerelease: false
+        
           
   upload_assets:
     needs: [create_release, package]
@@ -121,7 +124,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.BUILD_APP }}
         with:
-          upload_url: ${{ needs.create_release.outputs.upload_url }}
+          upload_url: ${{ needs.create_release.outputs.upload_url }} # Correctly reference the output
           asset_path: ./dist/${{ env.FILE_NAME }}
           asset_name: ${{ env.FILE_NAME }}
           asset_content_type: application/octet-stream
