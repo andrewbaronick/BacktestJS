@@ -65,6 +65,9 @@ jobs:
         env:
           PKG_CACHE_PATH: './.pkg-cache'
 
+      - name: List contents of the dist directory
+        run: ls -la ./dist/
+
       - name: Upload executable as artifact
         uses: actions/upload-artifact@v2
         with:
