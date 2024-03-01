@@ -79,25 +79,44 @@ jobs:
           name: ${{ runner.os }}-exe
           path: ./dist/${{ env.FILE_NAME }}
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        if: ${{ github.ref == 'refs/heads/main' }} && ${{ matrix.os == 'ubuntu-latest' }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.BUILD_APP }}
-        with:
-          tag_name: ${{ github.event.inputs.version }}
-          release_name: Release ${{ github.event.inputs.version }}
-          draft: false
-          prerelease: false
-
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        if: ${{ github.ref == 'refs/heads/main' }} && ${{ matrix.os == 'ubuntu-latest' }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.BUILD_APP }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dist/${{ env.FILE_NAME }}
-          asset_name: ${{ env.FILE_NAME }}
-          asset_content_type: application/octet-stream
+      create_release:
+        needs: package
+        runs-on: ubuntu-latest
+        if: ${{ github.ref == 'refs/heads/main' }}
+        steps:
+          - name: Create Release
+            id: create_release
+            uses: actions/create-release@v1
+            env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            with:
+              tag_name: ${{ github.event.inputs.version }}
+              release_name: Release ${{ github.event.inputs.version }}
+              draft: false
+              prerelease: false
+          
+      upload_assets:
+        needs: [create_release, package]
+        runs-on: ${{ matrix.os }}
+        strategy:
+          matrix:
+            os: [ubuntu-latest, windows-latest, macos-latest]
+        steps:
+          - uses: actions/checkout@v2
+          
+          - name: Download dist artifact
+            uses: actions/download-artifact@v2
+            with:
+              name: ${{ runner.os }}-exe
+              path: ./dist
+    
+          - name: Upload Release Asset
+            uses: actions/upload-release-asset@v1
+            env:
+              GITHUB_TOKEN: ${{ secrets.YOUR_PERSONAL_ACCESS_TOKEN }}
+            with:
+              upload_url: ${{ needs.create_release.outputs.upload_url }}
+              asset_path: ./dist/my-application-${{ matrix.os }}-${{ github.event.inputs.version }}${{ runner.os == 'Windows' && '.exe' || '' }}
+              asset_name: my-application-${{ matrix.os }}-${{ github.event.inputs.version }}${{ runner.os == 'Windows' && '.exe' || '' }}
+              asset_content_type: application/octet-stream
+          
