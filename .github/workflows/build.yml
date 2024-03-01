@@ -90,9 +90,10 @@ jobs:
         uses: actions/upload-release-asset@v1
         if: ${{ github.ref == 'refs/heads/main' }} && ${{ matrix.os == 'ubuntu-latest' }}
         env:
-          GITHUB_TOKEN: ${{ secrets.BUILD_APP }}
+         GITHUB_TOKEN: ${{ secrets.YOUR_PERSONAL_ACCESS_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./*.exe
-          asset_name: my-application-${{ runner.os }}.exe
+          asset_path: ${{ github.workspace }}/path/to/your/built/executable
+          asset_name: my-application-${{ runner.os }}-${{ github.event.inputs.version }}.exe
           asset_content_type: application/octet-stream
+  
