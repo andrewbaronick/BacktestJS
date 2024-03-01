@@ -32,10 +32,5 @@ RUN npx prisma generate
 # Make port 80 available to the world outside this container
 EXPOSE 80
 
-RUN ls /usr/
-RUN ls /usr/src/
-RUN ls /usr/src/app/
-RUN ls /usr/src/app/dist
-
 # Command to run your application
 CMD [ "node", "dist/main.js" ]
