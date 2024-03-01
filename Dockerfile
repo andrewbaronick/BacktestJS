@@ -29,6 +29,9 @@ RUN npx tsc || true
 # Generate Prisma client
 RUN npx prisma generate
 
+RUN ls -la 
+RUN ls -la ../
+
 # Make port 80 available to the world outside this container
 EXPOSE 80
 
