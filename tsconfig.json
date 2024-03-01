@@ -23,5 +23,5 @@
     }
   },
   "exclude": ["node_modules"],
-  "include": ["src/**/*.ts", "src/tests/test-orders.ts"]
+  "include": ["src/**/*.ts"]
 }

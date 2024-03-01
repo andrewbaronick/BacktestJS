@@ -7,14 +7,20 @@
   "scripts": {
     "start": "npx ts-node src/main.ts",
     "dev": "npx ts-node src/main.ts",
-    "makeJS": "tsc || true",
+    "build": "tsc || true",
+    "makejs": "tsc || true",
     "js": "node dist/main.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "postinstall": "npm run build"
   },
   "bin": {
     "backtestjs": "dist/main.js"
   },
+  "files": [
+    "dist",
+    "prisma/schema.prisma"
+  ],
   "pkg": {
     "assets": [
       "node_modules/**/*"
