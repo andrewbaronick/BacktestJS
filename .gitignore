@@ -1,6 +1,7 @@
 /prisma/migrations
 /node_modules
 /tests
+/dist
 /csv
 
 results-unsorted-multi.json

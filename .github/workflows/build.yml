@@ -107,13 +107,23 @@ jobs:
           name: ${{ runner.os }}-exe
           path: ./dist
           
+      - name: Define FILE_NAME environment variable
+        run: |
+          FILE_NAME="my-application-${{ matrix.os }}-${{ github.event.inputs.version }}"
+          if [ "${{ runner.os }}" == "Windows" ]; then
+            FILE_NAME+=".exe"
+          fi
+          echo "FILE_NAME=$FILE_NAME" >> $GITHUB_ENV
+        shell: bash
+      
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.BUILD_APP }}
         with:
           upload_url: ${{ needs.create_release.outputs.upload_url }}
-          asset_path: ./dist/my-application-${{ matrix.os }}-${{ github.event.inputs.version }}${{ runner.os == 'Windows' && '.exe' || '' }}
-          asset_name: my-application-${{ matrix.os }}-${{ github.event.inputs.version }}${{ runner.os == 'Windows' && '.exe' || '' }}
+          asset_path: ./dist/${{ env.FILE_NAME }}
+          asset_name: ${{ env.FILE_NAME }}
           asset_content_type: application/octet-stream
+        
           
