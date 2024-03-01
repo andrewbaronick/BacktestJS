@@ -56,7 +56,13 @@ jobs:
 
       - name: Set PKG_TARGET environment variable
         run: |
-          echo "PKG_TARGET=node18-$(echo ${{ matrix.os }} | sed -e 's/ubuntu-latest/linux/' -e 's/windows-latest/win/' -e 's/macos-latest/macos/')" >> $GITHUB_ENV
+          if [[ "${{ runner.os }}" == "Windows" ]]; then
+            echo "PKG_TARGET=node18-win-x64" >> $GITHUB_ENV
+          elif [[ "${{ runner.os }}" == "macOS" ]]; then
+            echo "PKG_TARGET=node18-macos-x64" >> $GITHUB_ENV
+          else
+            echo "PKG_TARGET=node18-linux-x64" >> $GITHUB_ENV
+          fi
 
       - name: Build executable using pkg
         run: |
