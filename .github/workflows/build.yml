@@ -79,7 +79,7 @@ jobs:
         uses: actions/create-release@v1
         if: ${{ github.ref == 'refs/heads/main' }} && ${{ matrix.os == 'ubuntu-latest' }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BUILD_APP }}
         with:
           tag_name: ${{ github.event.inputs.version }}
           release_name: Release ${{ github.event.inputs.version }}
@@ -90,7 +90,7 @@ jobs:
         uses: actions/upload-release-asset@v1
         if: ${{ github.ref == 'refs/heads/main' }} && ${{ matrix.os == 'ubuntu-latest' }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BUILD_APP }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./*.exe
