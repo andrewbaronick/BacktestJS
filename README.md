@@ -103,6 +103,8 @@ export async function sma(bth: BTH) {
 ```
 
 ## Results
+<details>
+  <summary>Result Images</summary>
 ![Income Results](http://backtestjs.com/wp-content/uploads/2024/02/Trading-Results-Income-Results.png)
 
 ![Buy Sell Locations](http://backtestjs.com/wp-content/uploads/2024/02/Trading-Results-Buy-Sell-Locations.png)
@@ -118,6 +120,7 @@ export async function sma(bth: BTH) {
 ![Trade Buy Sell Stats](http://backtestjs.com/wp-content/uploads/2024/02/Trading-Results-Trade-Buy-Sell-Stats.png)
 
 ![Asset Stats](http://backtestjs.com/wp-content/uploads/2024/02/Multi-Value-Symbol-Trading-Results-Asset-Stats.png)
+</details>
 
 ## Multi Value Results
 ![Permutation Results](http://backtestjs.com/wp-content/uploads/2024/02/Trading-Strategy-Results-Multi-Value-Permutation-Results.png)
