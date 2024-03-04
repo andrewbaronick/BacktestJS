@@ -5,6 +5,7 @@
   <img src="http://backtestjs.com/wp-content/uploads/2024/02/BacktestJS-White-Logo-1.png">
 </a>
 
+
 ![GitHub](https://img.shields.io/github/license/andrewbaronick/BacktestJS) 
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/andrewbaronick/BacktestJS) 
 
