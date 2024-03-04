@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Free and easy way to write backtest trading strategies in TS / JS with built in candle data retrieval",
   "main": "dist/main.js",
-  "keywords": ["backtest", "financial", "easy", "cli", "historical candle data", "download candle"],
+  "keywords": ["backtest", "finance", "trading", "download historical candle data", "indicators", "multi value", "multi symbol"],
   "scripts": {
     "start": "npx ts-node src/main.ts",
     "dev": "npx ts-node src/main.ts",
