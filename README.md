@@ -1,11 +1,8 @@
-# BacktestJS
+![BacktestJS Logo Dark Mode](http://backtestjs.com/wp-content/uploads/2024/02/BacktestJS-White-Logo-1.png#gh-dark-mode-only)
+![BacktestJS Logo Dark Mode](http://backtestjs.com/wp-content/uploads/2024/02/BacktestJS-Black-Logo-1.png#gh-light-mode-only)
+
 ![GitHub](https://img.shields.io/github/license/andrewbaronick/BacktestJS) 
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/andrewbaronick/BacktestJS) 
-
-
-![GitHub commit activity](https://img.shields.io/github/commit-activity/y/andrewbaronick/BacktestJS) 
-![GitHub contributors](https://img.shields.io/github/contributors/andrewbaronick/BacktestJS) 
-![GitHub last commit](https://img.shields.io/github/last-commit/andrewbaronick/BacktestJS) 
 
 
 ![GitHub package.json dynamic](https://img.shields.io/github/package-json/keywords/andrewbaronick/BacktestJS) 
@@ -101,10 +98,37 @@ export async function sma(bth: BTH) {
 ```
 
 ## Results
+![Income Results](http://backtestjs.com/wp-content/uploads/2024/02/Trading-Results-Income-Results.png)
+
+![Buy Sell Locations](http://backtestjs.com/wp-content/uploads/2024/02/Trading-Results-Buy-Sell-Locations.png)
+
+![General Info](http://backtestjs.com/wp-content/uploads/2024/02/Trading-Results-General-Info.png)
+
+![Total Stats](http://backtestjs.com/wp-content/uploads/2024/02/Trading-Results-Total-Stats.png)
+
+![All Orders](http://backtestjs.com/wp-content/uploads/2024/02/Trading-Results-All-Orders.png)
+
+![Trade Stats](http://backtestjs.com/wp-content/uploads/2024/02/Trading-Results-Trading-Stats.png)
+
+![Trade Buy Sell Stats](http://backtestjs.com/wp-content/uploads/2024/02/Trading-Results-Trade-Buy-Sell-Stats.png)
+
+![Asset Stats](http://backtestjs.com/wp-content/uploads/2024/02/Multi-Value-Symbol-Trading-Results-Asset-Stats.png)
 
 ## Multi Value Results
+![Permutation Results](http://backtestjs.com/wp-content/uploads/2024/02/Trading-Strategy-Results-Multi-Value-Permutation-Results.png)
+
+![Heatmap](http://backtestjs.com/wp-content/uploads/2024/02/Trading-Strategy-Results-Multi-Value-Heatmap.png)
+
+![General Info](http://backtestjs.com/wp-content/uploads/2024/02/Trading-Strategy-Results-Multi-Value-General-Info.png)
+
+![Total Stats](http://backtestjs.com/wp-content/uploads/2024/02/Trading-Strategy-Results-Multi-Value-Total-Stats.png)
 
 ## Multi Symbol Results
+![General Info](http://backtestjs.com/wp-content/uploads/2024/01/Multi-Symbol-Trading-Strategy-Results-General-Info.png)
+
+![Total Stats](http://backtestjs.com/wp-content/uploads/2024/01/Multi-Symbol-Trading-Strategy-Results-Total-Stats.png)
+
+![Permutation Results](http://backtestjs.com/wp-content/uploads/2024/01/Multi-Symbol-Trading-Strategy-Results-Permutation-Results.png)
 
 ## Author
 
