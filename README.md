@@ -5,9 +5,6 @@
   <img src="http://backtestjs.com/wp-content/uploads/2024/02/BacktestJS-White-Logo-1.png">
 </a>
 
-![BacktestJS Logo Dark Mode](http://backtestjs.com/wp-content/uploads/2024/02/BacktestJS-White-Logo-1.png#gh-dark-mode-only)
-![BacktestJS Logo Light Mode](http://backtestjs.com/wp-content/uploads/2024/02/BacktestJS-Black-Logo-1.png#gh-light-mode-only)
-
 ![GitHub](https://img.shields.io/github/license/andrewbaronick/BacktestJS) 
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/andrewbaronick/BacktestJS) 
 
