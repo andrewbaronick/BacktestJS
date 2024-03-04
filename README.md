@@ -1,7 +1,6 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="http://backtestjs.com/wp-content/uploads/2024/02/BacktestJS-White-Logo-1.pn">
   <source media="(prefers-color-scheme: light)" srcset="http://backtestjs.com/wp-content/uploads/2024/02/BacktestJS-Black-Logo-1.png">
-  <img alt="BacktestJS logo" src="http://backtestjs.com/wp-content/uploads/2024/02/BacktestJS-Black-Logo-1.png">
 </picture>
 
 ![BacktestJS Logo Dark Mode](http://backtestjs.com/wp-content/uploads/2024/02/BacktestJS-White-Logo-1.png#gh-dark-mode-only)
