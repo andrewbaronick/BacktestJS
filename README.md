@@ -15,7 +15,7 @@
 ## 📜 Description
 Elevate your trading strategies with BacktestJS, the premier CLI tool designed for traders and developers alike. Harness the power of Typescript or Javascript to backtest your strategies with precision, efficiency, and flexibility.
 
-
+&nbsp;  
 ## 🌟 Key Features
 - 🖥️ **Streamlined CLI Interface**: Intuitive command-line interface for streamlined operation.
 
@@ -25,7 +25,7 @@ Elevate your trading strategies with BacktestJS, the premier CLI tool designed f
 
 - 📚 **Extensive Documentation**: Unlock the full potential of BacktestJS with detailed guides and resources.
 
-
+&nbsp;  
 ## 🚀 Quick Start
 ### 📦 Setup Environment
 Install BacktestJS globally with npm to get started:
@@ -41,15 +41,15 @@ Enter the world of strategic backtesting with a single command:
   npm start
 ```
 
-
+&nbsp;  
 ## 📖 [Documentation and Support](http://backtestjs.com)
 Immerse yourself in the BacktestJS universe with our [Full Documentation](http://backtestjs.com). Discover tutorials, video guides, and extensive examples. Engage with our community forum for unparalleled support and discussions. Visit our site to unleash the full capabilities of BacktestJS.
 
-
+&nbsp;  
 ## 🔄 Download / Import Historical Candle Data
 Effortlessly download candle data from Binance or import from a CSV for strategy execution — no coding required! Plus, easily export your data to CSV via the CLI at anytime with a few clicks.
 
-
+&nbsp;  
 ## 💡 Examples
 
 #### **No Params**
@@ -106,7 +106,7 @@ export async function sma(bth: BTH) {
 }
 ```
 
-
+&nbsp;  
 ## 🎨 Showcase of Results
 BacktestJS not only delivers performance insights but also visualizes your strategy's effectiveness through comprehensive charts and statistics.
 
@@ -140,7 +140,7 @@ Examine permutation results and heatmap visualizations to refine your strategies
 
 ![Total Stats](http://backtestjs.com/wp-content/uploads/2024/02/Trading-Strategy-Results-Multi-Value-Total-Stats.png)
 
-## 🌍 Multi Symbol Results
+### 🌍 Multi Symbol Results
 See if that killer strategy works across the board on many symbols and timeframes with ease.  Get all your results in one shot with blazing fast results.
 
 ![General Info](http://backtestjs.com/wp-content/uploads/2024/01/Multi-Symbol-Trading-Strategy-Results-General-Info.png)
@@ -149,7 +149,7 @@ See if that killer strategy works across the board on many symbols and timeframe
 
 ![Permutation Results](http://backtestjs.com/wp-content/uploads/2024/01/Multi-Symbol-Trading-Strategy-Results-Permutation-Results.png)
 
-
+&nbsp;  
 ## ✍️ Author
 
 #### Andrew Baronick  
