@@ -28,7 +28,7 @@ Elevate your trading strategies with BacktestJS, the premier CLI tool designed f
 &nbsp;  
 ## 🚀 Quick Start
 ### 📦 Setup Environment
-Install BacktestJS globally with npm to get started:
+Follow these one time instructions below to setup the environment.
 ```bash
   git clone https://github.com/andrewbaronick/BacktestJS.git
   cd BacktestJS
