@@ -15,14 +15,16 @@
 ## 📜 Description
 Elevate your trading strategies with BacktestJS, the premier CLI tool designed for traders and developers alike. Harness the power of Typescript or Javascript to backtest your strategies with precision, efficiency, and flexibility.
 
+
 ## 🌟 Key Features
-🖥️ **Streamlined CLI Interface**: Intuitive command-line interface for streamlined operation.
+- 🖥️ **Streamlined CLI Interface**: Intuitive command-line interface for streamlined operation.
 
-📊 **Candle Data at Your Fingertips**: Download historical candle data directly from Binance or import your own from CSV files.
+- 📊 **Candle Data at Your Fingertips**: Download historical candle data directly from Binance or import your own from CSV files.
 
-🗃️ **Seamless SQLite Integration**: Efficient storage for your candle data, strategies, and results (no coding required).
+- 🗃️ **Seamless SQLite Integration**: Efficient storage for your candle data, strategies, and results (no coding required).
 
-📚 **Extensive Documentation**: Unlock the full potential of BacktestJS with detailed guides and resources.
+- 📚 **Extensive Documentation**: Unlock the full potential of BacktestJS with detailed guides and resources.
+
 
 ## 🚀 Quick Start
 ### 📦 Setup Environment
@@ -39,15 +41,18 @@ Enter the world of strategic backtesting with a single command:
   npm start
 ```
 
+
 ## 📖 [Documentation and Support](http://backtestjs.com)
 Immerse yourself in the BacktestJS universe with our [Full Documentation](http://backtestjs.com). Discover tutorials, video guides, and extensive examples. Engage with our community forum for unparalleled support and discussions. Visit our site to unleash the full capabilities of BacktestJS.
+
 
 ## 🔄 Download / Import Historical Candle Data
 Effortlessly download candle data from Binance or import from a CSV for strategy execution — no coding required! Plus, easily export your data to CSV via the CLI at anytime with a few clicks.
 
+
 ## 💡 Examples
 
-#### No Params
+#### **No Params**
 
 Below is an example of a simple 3 over 45 SMA strategy.  You buy once the 3 crosses the 45 and sell if not.  In this example we dont use the power of params.
 ```bash
@@ -72,7 +77,7 @@ export async function sma(bth: BTH) {
 }
 ```
 
-#### With Params
+#### **With Params**
 Below is an example of a simple SMA strategy like above but its not hard coded to the 3 over 45. When you run the strategy through the CLI you will be asked to provide a low and high sma.  You can even provide multiple lows and multiple highs and all the variations will be tested in one shot.
 
 ```bash
@@ -101,11 +106,13 @@ export async function sma(bth: BTH) {
 }
 ```
 
+
 ## 🎨 Showcase of Results
 BacktestJS not only delivers performance insights but also visualizes your strategy's effectiveness through comprehensive charts and statistics.
 
-## 🏆 Income Results, Buy/Sell Locations, and More
+### 🏆 Income Results, Buy/Sell Locations, and More
 Explore the visual representation of your trading outcomes, from income results to buy/sell locations, offering you a clear view of your strategy's performance.
+
 ![Income Results](http://backtestjs.com/wp-content/uploads/2024/02/Trading-Results-Income-Results.png)
 
 ![Buy Sell Locations](http://backtestjs.com/wp-content/uploads/2024/02/Trading-Results-Buy-Sell-Locations.png)
@@ -122,8 +129,9 @@ Explore the visual representation of your trading outcomes, from income results 
 
 ![Asset Stats](http://backtestjs.com/wp-content/uploads/2024/02/Multi-Value-Symbol-Trading-Results-Asset-Stats.png)
 
-## 🔍 Multi Value Results
+### 🔍 Multi Value Results
 Examine permutation results and heatmap visualizations to refine your strategies across different values all in one run.
+
 ![Permutation Results](http://backtestjs.com/wp-content/uploads/2024/02/Trading-Strategy-Results-Multi-Value-Permutation-Results.png)
 
 ![Heatmap](http://backtestjs.com/wp-content/uploads/2024/02/Trading-Strategy-Results-Multi-Value-Heatmap.png)
@@ -134,11 +142,13 @@ Examine permutation results and heatmap visualizations to refine your strategies
 
 ## 🌍 Multi Symbol Results
 See if that killer strategy works across the board on many symbols and timeframes with ease.  Get all your results in one shot with blazing fast results.
+
 ![General Info](http://backtestjs.com/wp-content/uploads/2024/01/Multi-Symbol-Trading-Strategy-Results-General-Info.png)
 
 ![Total Stats](http://backtestjs.com/wp-content/uploads/2024/01/Multi-Symbol-Trading-Strategy-Results-Total-Stats.png)
 
 ![Permutation Results](http://backtestjs.com/wp-content/uploads/2024/01/Multi-Symbol-Trading-Strategy-Results-Permutation-Results.png)
+
 
 ## ✍️ Author
 
