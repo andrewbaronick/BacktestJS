@@ -15,11 +15,11 @@ export async function ex1SMA(bth: BTH) {
     const highSMACandles = await bth.getCandles('close', 0, highSMAInput) // If there are not highSMA candles back will return array of 0's and block buy / sell until can return highSMA candles
 
     // Get low and high SMA
-    const lowSMA = await indicatorSMA(lowSMACandles, lowSMAInput)
-    const highSMA = await indicatorSMA(highSMACandles, highSMAInput)
+    const lowSMA = indicatorSMA(lowSMACandles, lowSMAInput)
+    const highSMA = indicatorSMA(highSMACandles, highSMAInput)
 
     // Buy if lowSMA crosses over the highSMA
-    if (lowSMA > highSMA) {
+    if (lowSMA[0] > highSMA[0]) {
         await bth.buy()
     }
 
