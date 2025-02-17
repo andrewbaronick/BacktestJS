@@ -16,11 +16,11 @@ export async function ex3SMAShort(bth: BTH) {
     const highSMACandles = await bth.getCandles('close', 0, highSMAInput)
 
     // Get low and high SMA
-    const lowSMA = await indicatorSMA(lowSMACandles, lowSMAInput)
-    const highSMA = await indicatorSMA(highSMACandles, highSMAInput)
+    const lowSMA = indicatorSMA(lowSMACandles, lowSMAInput)
+    const highSMA = indicatorSMA(highSMACandles, highSMAInput)
 
     // Buy long if lowSMA crosses over the highSMA
-    if (lowSMA > highSMA) {
+    if (lowSMA[0] > highSMA[0]) {
         // Sell if bought into a short
         if (bth.orderBook.boughtShort) await bth.sell()
 

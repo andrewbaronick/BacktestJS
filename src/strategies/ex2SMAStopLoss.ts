@@ -16,11 +16,11 @@ export async function ex2SMAStopLoss(bth: BTH) {
     const highSMACandles = await bth.getCandles('close', 0, highSMAInput)
 
     // Get low and high SMA
-    const lowSMA = await indicatorSMA(lowSMACandles, lowSMAInput)
-    const highSMA = await indicatorSMA(highSMACandles, highSMAInput)
+    const lowSMA = indicatorSMA(lowSMACandles, lowSMAInput)
+    const highSMA = indicatorSMA(highSMACandles, highSMAInput)
 
     // Buy if lowSMA crosses over the highSMA
-    if (lowSMA > highSMA) {
+    if (lowSMA[0] > highSMA[0]) {
         // Buy with a stop loss
         await bth.buy({ stopLoss: bth.currentCandle.close * (1 - (stopLoss / 100)) })
     }
